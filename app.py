@@ -6,7 +6,7 @@ from sqlite3 import Error
 
 from arief import *
 
-
+print("hello")
 
 extra_dirs = ['./static',]
 extra_files = extra_dirs[:]
