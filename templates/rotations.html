@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+{% block content %}
+
+    <div class="header">
+        <h1>Team Sheets</h1>
+    </div>
+
+<body class="rotations">
+    <div class="main" id="rotations">
+        {% for teamsheet in teamsheets %}
+
+        <table>
+        <tr>
+            <td>{{ teamsheet[0] }}</td>
+            <td>{{ teamsheet[1] }}</td>
+            <td>{{ teamsheet[2] }}</td>
+        </tr>
+        <tr>
+            <td>{{ teamsheet[3] }}</td>
+            <td>{{ teamsheet[4] }}</td>
+            <td>{{ teamsheet[5] }}</td>  
+        </tr>
+        </table>
+    
+
+
+    {% endfor %}
+    </div>
+</body> 
+
+
+{% endblock %}

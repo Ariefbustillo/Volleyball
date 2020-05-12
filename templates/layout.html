@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" >
+    <head>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='style.css') }}">
+    </head>
+    <title>Volleyball rotations</title>
+<body>
+     
+        <button class="home">
+            <a class="home" href="/"><img id="homebutton" src="/static/images/home-button.png"></a>
+            
+        </button>
+        <div class="box"></div>
+        <a class="logout" href="/logout">
+            <button id="logout-button" class="submit-btn">Log Out</button>
+        </a>
+        
+    
+</body>
+    
+    {% block content %}{% endblock %}
+</html>

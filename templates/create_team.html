@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="header">
+        <h1>Volleyball Rotater</h1>
+        <img id="volleyball-image" src="./static/Vector.svg" width="90" height="90" class="bouncy-bouncy"/>
+</div>
+
+    
+<body>
+    <div class="main">
+
+    <form action="/new_team" method="post"> 
+
+        <input required type="text" name="team_name" placeholder = "Team Name"></input>
+        </br>
+        <input type="submit" value="Create" class="submit-btn"></input>
+    </form>
+
+
+{% endblock %}

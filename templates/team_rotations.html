@@ -1,0 +1,77 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="header">
+        <h1>{{ team }}</h1>
+        <img id="volleyball-image" src="./static/Vector.svg" width="90" height="90" class="bouncy-bouncy"/>
+</div>
+
+    
+<body>
+    <div class="main">
+    __________________________________________________________________ <br/><br/>
+    <form action="/rotate" method="post"> 
+
+        <select name="playerOne" placeholder = "Player 4">
+            <option selected="selected">Player 4</option>
+            {% for player in players %}
+                <option value= "{{player}}">{{player}}</option>
+            {% endfor %}
+        </select>
+        <select name="playerSix" placeholder = "Player 3">
+            <option selected="selected">Player 3</option>
+            {% for player in players %}
+                <option value= "{{player}}">{{player}}</option>
+            {% endfor %}
+        </select>
+        <select name="playerFive" placeholder = "Player 2">
+            <option selected="selected">Player 2</option>
+            {% for player in players %}
+                <option value= "{{player}}">{{player}}</option>
+            {% endfor %}
+        </select>
+        <br/>
+        <select name="playerTwo" placeholder = "Player 5">
+            <option selected="selected">Player 5</option>
+            {% for player in players %}
+                <option value= "{{player}}">{{player}}</option>
+            {% endfor %}
+    `   </select>
+        <select name="playerThree" placeholder = "Player 6">
+            <option selected="selected">Player 6</option>
+            {% for player in players %}
+                <option value= "{{player}}">{{player}}</option>
+            {% endfor %}
+        </select>
+        <select name="playerFour" placeholder = "Player 1">
+            <option selected="selected">Player 1</option>
+            {% for player in players %}
+                <option value= "{{player}}">{{player}}</option>
+            {% endfor %}
+        </select> 
+        
+        <br/>
+        __________________________________________________________________
+        <br></br></br>
+        <input type="submit" value="Rotate" class="submit-btn"></input>
+    </form>
+</div>
+    <div class="team_select">
+        <h1>PLAYERS</h1>
+        {% for player in players%}
+            <form action="player_info" method="post">
+                <input type ="hidden" name="name" value="{{ player }}">
+                <input type = "hidden" name="team" value="{{ team }}">
+                <button type="submit" class="select-button"> {{ player }}</button></br>
+            </form>
+        {% endfor %}
+
+        <form action="/create_player" method="post">
+            <input type="hidden" name="team_name" value="{{ team }}">
+            <button type="submit" class="select-button new" style="text-decoration: none;">Create New Player</button>
+        </form>
+    </div>
+
+</body>
+
+
+{% endblock %}

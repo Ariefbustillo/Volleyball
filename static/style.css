@@ -1,0 +1,189 @@
+
+html{
+  overflow: hidden;
+  height: 100%;
+}
+.box{
+  grid-area: 1/2;
+  background-image: linear-gradient(#000000, #444444);
+}
+
+body{
+    display: grid;
+    grid-template: 1fr 5fr 14fr / 1fr 6fr 1fr; 
+    margin: 0;
+    text-align: center;
+    height: 100%;
+    background-image: linear-gradient(#444444, #000000);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+body.rotations{
+  grid-template: 1fr 3fr 16fr / 1fr 6fr 1fr;
+}
+table{
+    text-align: center;
+    color: #094120;
+    background-image: linear-gradient(#ffffff, #dddddd);
+    border: 3px solid #094120;
+}
+
+
+.top-bar{
+  background-image: linear-gradient(#333333, #222222);
+  overflow: auto;
+  width: 100%;
+
+}
+.header{
+    /* background-image: linear-gradient(#333333, #222222); */
+    overflow: auto;
+    width: 100%;
+    grid-area: 2 / 2;
+  
+}
+#logout-button{
+  grid-area: 1 / 3;
+  cursor: pointer;
+  padding: 5px;
+  margin: 5px;
+  color: black;
+  background-image: linear-gradient(#333333, #222222);
+  
+}
+a.logout{
+  grid-area: 1 / 3;
+  background-image: linear-gradient(#000000, #444444);
+  text-align: right;
+  align-items: center;
+}
+a #logout-button{
+  text-decoration: none;
+  color: white;
+}
+.main{
+  /* background-image: linear-gradient(#222222, #000000); */
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    color: white;
+    grid-area: 3 / 2 ;
+}
+
+
+h1{
+    position: relative;
+    font-family: Arial;
+    font-size: 72px;
+    color: #4b1010;
+    font-size: 40px;
+}
+#rotations{
+    display: grid;
+    grid-template: 80px 80px 80px / 1fr 1fr;
+    grid-auto-flow: column;
+    grid-column-gap: 200px;
+    /* align-items: center;
+    justify-items: center; */
+    
+    /* text-align: center;
+    width: 20%;
+    height: 5%;
+    margin: 0px 40%; */
+
+}
+@keyframes bounce-me {
+    0% {
+      transform: translateY(0);
+      transform: scaleX(1.4);
+      transform: scaleY(0.85);
+    }
+    15% {
+      transform: scaleX(1);
+      transform: scaleY(1);
+    }
+    25% {
+    transform: translateY(-10px);
+   }
+    50% {
+     transform: translateY(-20px);
+     
+    }
+    85% {
+      transform: scaleX(1);
+      transform: scaleY(1);
+    }
+    100% {
+      transform: translateX(0);
+      transform: scaleX(1.4);
+      transform: scaleY(0.85);
+    }
+  }
+  
+  
+  .bouncy-bouncy:hover {
+    animation: bounce-me 1s infinite;
+    animation-timing-function: ease-in;
+    transform-origin: bottom ;
+  }
+
+
+.submit-btn {
+    border-radius: 5px;
+    color: black;
+    background: white;
+    padding: 10px;
+    border: 1px solid #DEDEDE;
+    box-sizing: border-box;
+    box-shadow: 2px 2px 4px rgba(156, 122, 122, 0.25);
+    
+
+
+    
+    /* border: 1px #094120; */
+    
+}
+.submit-btn:hover {
+    box-shadow: 2px 2px 4px grey;
+
+}
+.submit-btn:focus{
+    outline: 0;
+    border: 1px grey;
+    padding: 9px 10px 10px 9px;
+}
+
+#homebutton{
+  width: 30px;
+  height: 30px;
+  background: white;
+  border-radius: 100%;
+  
+
+}
+button.home{
+  grid-area: 1 / 1;
+  border: none;
+  margin: 0 0 0 0;
+  background-image: linear-gradient(#000000, #444444);
+  text-align: left;
+}
+.team_select{
+  color: white;
+  grid-area: 2 / 1 / span 2 / 1;
+}
+.new_team{
+  color: white;
+  text-decoration: none;
+}
+.select-button{
+  width: 150px;
+  height:20px;
+  margin: 5px;
+  box-shadow: 1px 1px 2px grey;
+}
+.select-button.new{
+  width: 175px;
+}

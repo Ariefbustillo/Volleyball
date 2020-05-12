@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" >
+    <head>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='style.css') }}">
+    </head>
+
+    <body>
+        <div class="main">
+            <form id="login" action="login" method="post">
+                <h2>Please Enter Username and Password</h2>
+                <label id="username">Username:</label>
+                <input required id="username" type="text" name="username" placeholder="Username">
+                <label id="password">Password</label>
+                <input required id="password" type="password" placeholder="Password" name="password">
+                <input type="submit" name="submit" value="Enter" class="submit-btn" id="enter">
+            </form>
+        </br> OR </br> </br>
+            <a class="signup" href="/signup">
+                <button id="sign-up" class="submit-btn">Sign up</button>
+        </div>
+    </body>
+</html>

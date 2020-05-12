@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="header">
+        <h1>{{ team }}</h1>
+        <img id="volleyball-image" src="./static/Vector.svg" width="90" height="90" class="bouncy-bouncy"/>
+</div>
+
+    
+<body>
+    <div class="main">
+        <h3>Player Name:</h3> {{ name }}
+        <h3>Position:</h3> {{ position }}
+    </div>
+
+    <form action="/team_rotations" method="post"> 
+
+        <input type="hidden" name="name" value="{{ name }}"></input>
+        <input type="hidden" name="team_name" value="{{ team }}">
+        </br>
+        <input type="submit" value="Back to Team" class="submit-btn"></input>
+    </form>
+
+</body>
+
+
+
+{% endblock %}
