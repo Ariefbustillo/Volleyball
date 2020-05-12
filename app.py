@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, session
 from os import path, walk
 from functools import wraps
 import sqlite3
@@ -6,7 +6,7 @@ from sqlite3 import Error
 
 from arief import *
 
-print("hello")
+
 
 extra_dirs = ['./static',]
 extra_files = extra_dirs[:]
@@ -20,7 +20,7 @@ for extra_dir in extra_dirs:
 
 app = Flask(__name__)
 app.debug = True
-
+app.secret_key = '7djf6s9dj03'
 
 # USERS = {
 #     'arief': 'password',
@@ -28,7 +28,7 @@ app.debug = True
 #     'murtado': 'contrasena'
 # }
 
-LOGGED_IN = False
+
 
 
 def login_required(f):
@@ -36,7 +36,7 @@ def login_required(f):
 
     @wraps(f)
     def decorated_function(*args, **kwargs):
-        if not LOGGED_IN:
+        if not session['logged_in']:
             return redirect(url_for('index'))
         return f(*args, **kwargs)
     return decorated_function
@@ -44,20 +44,22 @@ def login_required(f):
 
 @app.route("/")
 def index():
-    global LOGGED_IN
-    global USER_ID
-    if not LOGGED_IN: 
-        print(LOGGED_IN)
+    if 'logged_in' not in session:
+        session['logged_in'] = False
+        session['user_id'] = None
+        session['teams'] = []
+    if not session['logged_in']: 
+        print(session['logged_in'])
         return render_template("login.html")
     db = create_connection()
-    teams = get_teams(db, USER_ID)
-    return render_template("index.html", teams=teams)
+    session['teams'] = get_teams(db, session['user_id'])
+    print(session['username'])
+    return render_template("index.html", teams=session['teams'])
 
 
 @app.route("/logout")
 def logout():
-    global LOGGED_IN
-    LOGGED_IN = False
+    session['logged_in'] = False
     return render_template("logged_out.html")
 
 @app.route("/signup")
@@ -79,11 +81,10 @@ def create_team():
 
 @app.route("/new_team", methods=["post"])
 def new_team():
-    # global USER_ID
     team_name = request.form.get("team_name")
     db = create_connection()
     with db:
-        insert_team(db, USER_ID, team_name)
+        insert_team(db, session['user_id'], team_name)
     return redirect(url_for('index'))
 
 @app.route("/create_player", methods=["post"])
@@ -131,18 +132,19 @@ def create_account():
 
 @app.route("/login", methods=["POST", "GET"])
 def login():
+    session['username'] = request.form.get("username")
     user_name = request.form.get("username")
     password = request.form.get("password")
     db = create_connection()
     users = get_users(db)
+
     print(search_usernames(users,user_name))
-    print(users[1][2])
     if search_usernames(users,user_name) != False:        
         if users[(search_usernames(users,user_name) - 1)][2] == password:
-            global LOGGED_IN
-            LOGGED_IN = True
-            global USER_ID
-            USER_ID = search_usernames(users,user_name)
+            
+            session['logged_in'] = True
+            session['user_id'] = users[(search_usernames(users,user_name) - 1)][0]
+            session['username'] = user_name
             print("true")
             return redirect(url_for('index'))
         else: return render_template("failed_login.html")
@@ -150,13 +152,6 @@ def login():
         print("loser")
         return render_template("failed_login.html")
 
-    # if username in USERS.keys() and password == USERS[username]:
-    #     global LOGGED_IN
-    #     LOGGED_IN = True
-    #     print("Here")
-    #     return redirect(url_for('index'))
-    # else:
-    #     return render_template("failed_login.html")
 
 @app.route("/rotate", methods=["POST"])
 def rotate():
