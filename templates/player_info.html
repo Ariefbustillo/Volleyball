@@ -14,11 +14,17 @@
 
     <form action="/team_rotations" method="post"> 
 
-        <input type="hidden" name="name" value="{{ name }}"></input>
         <input type="hidden" name="team_name" value="{{ team }}">
         </br>
         <input type="submit" value="Back to Team" class="submit-btn"></input>
     </form>
+    <form action="/remove_player" method="post"> 
+
+        <input type="hidden" name="player_id" value={{player_id}}></input>
+        </br>
+        <input type="submit" value="Delete Player" class="submit-btn"></input>
+    </form>
+
 
 </body>
 

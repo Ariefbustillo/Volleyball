@@ -59,6 +59,7 @@ def index():
 
 @app.route("/logout")
 def logout():
+    print("print out 4")
     session['logged_in'] = False
     return render_template("logged_out.html")
 
@@ -68,9 +69,12 @@ def signup():
 
 @app.route("/team_rotations", methods=["post"])
 def team_rotations():
+    print("print out0")
     team = request.form.get("team_name")
     db = create_connection()
+    print("print out1")
     players = get_players(db, team)
+    
     return render_template("team_rotations.html", players=players, team=team)
 
 @app.route("/create_team")
@@ -95,6 +99,7 @@ def create_player():
 
 @app.route("/new_player", methods=["post"])
 def new_player():
+    print("print out 3")
     name = request.form.get("name")
     position = request.form.get("position")
     team = request.form.get("team_name")
@@ -110,12 +115,24 @@ def new_player():
 def player_info():
     name = request.form.get("name")
     team = request.form.get("team")
+    player_id = request.form.get("player_id")
     db = create_connection()
     players_info = get_player_info(db,team)
-    position = players_info[name]
-    return render_template("player_info.html", name=name, team=team, position=position)
+    position = ''
 
+    for player_info in players_info:
+        if player_info[0] == int(player_id):
+            position = player_info[3]
 
+    return render_template("player_info.html", name=name, team=team, position=position, player_id=player_id)
+
+@app.route("/remove_player", methods=["post"])
+def remove_player():
+    player_id = request.form.get("player_id")
+    db = create_connection()
+    with db:
+        delete_player(db, player_id)
+    return redirect(url_for('index'))
 
 @app.route("/create_account", methods=["post"])
 def create_account():

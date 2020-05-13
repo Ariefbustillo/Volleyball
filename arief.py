@@ -43,21 +43,18 @@ def get_teams(connection,user_id):
     return team_list
 def get_players(connection,team_name):
     cursor = connection.cursor()
-    cursor.execute("SELECT name FROM players WHERE team_name = ?", (team_name,))
+    cursor.execute("SELECT player_id, name FROM players WHERE team_name = ?", (team_name,))
     players = cursor.fetchall()
-    player_list = []
+    player_dict = {}
     for player in players:
-        player_list.append(player[0])
-    return player_list
+        player_dict.update({player[0]:player[1]})
+    return player_dict
 
 def get_player_info(connection,team_name):
     cursor = connection.cursor()
-    cursor.execute("SELECT name, position FROM players WHERE team_name = ?", (team_name,))
+    cursor.execute("SELECT * FROM players WHERE team_name = ?", (team_name,))
     players = cursor.fetchall()
-    player_info = {}
-    for player in players:
-        player_info.update({player[0]:player[1]})
-    return player_info
+    return players
 
 def insert_team(connection, user_id, team_name):
     cursor = connection.cursor()
@@ -66,6 +63,11 @@ def insert_team(connection, user_id, team_name):
 def insert_player(connection, team_name, player_name, position):
     cursor = connection.cursor()
     cursor.execute("INSERT INTO players(team_name, name, position) VALUES(?,?,?)",(team_name, player_name, position,))
+
+def delete_player(connection, player_id):
+    cursor = connection.cursor()
+    cursor.execute("DELETE FROM players WHERE player_id = ?", (player_id,))
+    # connection.commit()
 
 def search_usernames(users, username):
     for i, user in enumerate(users):

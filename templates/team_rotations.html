@@ -13,39 +13,39 @@
 
         <select name="playerOne" placeholder = "Player 4">
             <option selected="selected">Player 4</option>
-            {% for player in players %}
-                <option value= "{{player}}">{{player}}</option>
+            {% for key, value in players.items() %}
+                <option value= "{{value}}">{{value}}</option>
             {% endfor %}
         </select>
         <select name="playerSix" placeholder = "Player 3">
             <option selected="selected">Player 3</option>
-            {% for player in players %}
-                <option value= "{{player}}">{{player}}</option>
+            {% for key, value in players.items() %}
+                <option value= "{{value}}">{{value}}</option>
             {% endfor %}
         </select>
         <select name="playerFive" placeholder = "Player 2">
             <option selected="selected">Player 2</option>
-            {% for player in players %}
-                <option value= "{{player}}">{{player}}</option>
+            {% for key, value in players.items() %}
+                <option value= "{{value}}">{{value}}</option>
             {% endfor %}
         </select>
         <br/>
         <select name="playerTwo" placeholder = "Player 5">
             <option selected="selected">Player 5</option>
-            {% for player in players %}
-                <option value= "{{player}}">{{player}}</option>
+            {% for key, value in players.items() %}
+                <option value= "{{value}}">{{value}}</option>
             {% endfor %}
     `   </select>
         <select name="playerThree" placeholder = "Player 6">
             <option selected="selected">Player 6</option>
-            {% for player in players %}
-                <option value= "{{player}}">{{player}}</option>
+            {% for key, value in players.items() %}
+                <option value= "{{value}}">{{value}}</option>
             {% endfor %}
         </select>
         <select name="playerFour" placeholder = "Player 1">
             <option selected="selected">Player 1</option>
-            {% for player in players %}
-                <option value= "{{player}}">{{player}}</option>
+            {% for key, value in players.items() %}
+                <option value= "{{value}}">{{value}}</option>
             {% endfor %}
         </select> 
         
@@ -57,11 +57,13 @@
 </div>
     <div class="team_select">
         <h1>PLAYERS</h1>
-        {% for player in players%}
+        {% for key, value in players.items() %}
             <form action="player_info" method="post">
-                <input type ="hidden" name="name" value="{{ player }}">
+                <input type ="hidden" name="name" value="{{ value }}">
+                <input type = "hidden" name="player_id" value= "{{ key }}">
                 <input type = "hidden" name="team" value="{{ team }}">
-                <button type="submit" class="select-button"> {{ player }}</button></br>
+                <!-- <input type="hidden" name="player_id" value="{{ player_id }}"> -->
+                <button type="submit" class="select-button"> {{ value }}</button></br>
             </form>
         {% endfor %}
 
