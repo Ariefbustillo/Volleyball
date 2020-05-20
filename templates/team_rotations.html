@@ -9,40 +9,40 @@
 <body>
     <div class="main">
     __________________________________________________________________ <br/><br/>
-    <form action="/rotate" method="post"> 
+    <form id="rotate"> 
 
-        <select name="playerOne" placeholder = "Player 4">
+        <select id="playerOne" placeholder = "Player 4">
             <option selected="selected">Player 4</option>
             {% for key, value in players.items() %}
                 <option value= "{{value}}">{{value}}</option>
             {% endfor %}
         </select>
-        <select name="playerSix" placeholder = "Player 3">
+        <select id="playerSix" placeholder = "Player 3">
             <option selected="selected">Player 3</option>
             {% for key, value in players.items() %}
                 <option value= "{{value}}">{{value}}</option>
             {% endfor %}
         </select>
-        <select name="playerFive" placeholder = "Player 2">
+        <select id="playerFive" placeholder = "Player 2">
             <option selected="selected">Player 2</option>
             {% for key, value in players.items() %}
                 <option value= "{{value}}">{{value}}</option>
             {% endfor %}
         </select>
         <br/>
-        <select name="playerTwo" placeholder = "Player 5">
+        <select id="playerTwo" placeholder = "Player 5">
             <option selected="selected">Player 5</option>
             {% for key, value in players.items() %}
                 <option value= "{{value}}">{{value}}</option>
             {% endfor %}
     `   </select>
-        <select name="playerThree" placeholder = "Player 6">
+        <select id="playerThree" placeholder = "Player 6">
             <option selected="selected">Player 6</option>
             {% for key, value in players.items() %}
                 <option value= "{{value}}">{{value}}</option>
             {% endfor %}
         </select>
-        <select name="playerFour" placeholder = "Player 1">
+        <select id="playerFour" placeholder = "Player 1">
             <option selected="selected">Player 1</option>
             {% for key, value in players.items() %}
                 <option value= "{{value}}">{{value}}</option>
@@ -54,6 +54,19 @@
         <br></br></br>
         <input type="submit" value="Rotate" class="submit-btn"></input>
     </form>
+
+    <div class="rotation-box">
+        <h3> Rotations: </h3>
+            <div class="rotations" id="rotations">
+                
+                <table></table>
+                <table></table>
+                <table></table>
+                <table></table>
+                <table></table>
+                <table></table>
+            </div>
+        </div>
 </div>
     <div class="team_select">
         <h1>PLAYERS</h1>
@@ -62,7 +75,6 @@
                 <input type ="hidden" name="name" value="{{ value }}">
                 <input type = "hidden" name="player_id" value= "{{ key }}">
                 <input type = "hidden" name="team" value="{{ team }}">
-                <!-- <input type="hidden" name="player_id" value="{{ player_id }}"> -->
                 <button type="submit" class="select-button"> {{ value }}</button></br>
             </form>
         {% endfor %}

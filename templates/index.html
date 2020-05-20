@@ -5,33 +5,43 @@
         <img id="volleyball-image" src="./static/Vector.svg" width="90" height="90" class="bouncy-bouncy"/>
 </div>
 
+
     
 <body>
     <div class="main">
     __________________________________________________________________ <br/><br/>
-    <form action="/rotate" method="post"> 
+    <form id="rotate"> 
 
-        <input required type="text" name="playerOne" placeholder = "Player 4"></input>
-        <input required type="text" name="playerSix" placeholder = "Player 3"></input>
-        <input required type="text" name="playerFive" placeholder = "Player 2"></input>
+        <input required type="text" id="playerOne" placeholder = "Player 4"></input>
+        <input required type="text" id="playerSix" placeholder = "Player 3"></input>
+        <input required type="text" id="playerFive" placeholder = "Player 2"></input>
         <br/>
-        <input required type="text" name="playerTwo" placeholder = "Player 5"></input>
-        <input required type="text" name="playerThree" placeholder = "Player 6"></input>
-        <input required type="text" name="playerFour" placeholder = "Player 1"></input> <br/>
+        <input required type="text" id="playerTwo" placeholder = "Player 5"></input>
+        <input required type="text" id="playerThree" placeholder = "Player 6"></input>
+        <input required type="text" id="playerFour" placeholder = "Player 1"></input> <br/>
         __________________________________________________________________
         <br></br></br>
-        <input type="submit" value="Rotate" class="submit-btn"></input>
+        <input type="submit" class="submit-btn"></input>
     </form>
-
-
-    
+    <div class="rotation-box">
+    <h3> Rotations: </h3>
+        <div class="rotations" id="rotations">
+            
+            <table></table>
+            <table></table>
+            <table></table>
+            <table></table>
+            <table></table>
+            <table></table>
+        </div>
+    </div>
     </div>
     <div class="team_select">
         <h2>SELECT TEAM</h2>
         <ul>
             {% for team in teams %}
             <form action="team_rotations" method="post">
-                <input type="hidden" name="team_name" value="{{ team }}">
+                <input type="hidden" id ="team_name4"name="team_name" value="{{ team }}">
                 <button class="select-button" type="submit">{{ team }}</button>
             </form>
 

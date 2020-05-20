@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 from os import path, walk
+import os
 from functools import wraps
 import sqlite3
 from sqlite3 import Error
@@ -20,15 +21,7 @@ for extra_dir in extra_dirs:
 
 app = Flask(__name__)
 app.debug = True
-app.secret_key = '7djf6s9dj03'
-
-# USERS = {
-#     'arief': 'password',
-#     'luthfi': 'passwordBetter',
-#     'murtado': 'contrasena'
-# }
-
-
+app.secret_key = os.getenv("SECRET_KEY")
 
 
 def login_required(f):
@@ -132,8 +125,6 @@ def create_account():
     with db:
         user = (username, password)
         insert_user(db,user)
-    # user = (username,password)
-    # insert_user(db, user)
     return (render_template("login.html"))
 
 
@@ -157,30 +148,30 @@ def login():
         return render_template("failed_login.html")
 
 
-@app.route("/rotate", methods=["POST"])
-def rotate():
-    players = [None] * 6
-    teamsheets =[]
-    players[1] = request.form.get("playerOne")
-    players[2] = request.form.get("playerTwo")
-    players[3] = request.form.get("playerThree")
-    players[4] = request.form.get("playerFour")
-    players[5] = request.form.get("playerFive")
-    players[0] = request.form.get("playerSix")
+# @app.route("/rotate", methods=["POST"])
+# def rotate():
+#     players = [None] * 6
+#     teamsheets =[]
+#     players[1] = request.form.get("playerOne")
+#     players[2] = request.form.get("playerTwo")
+#     players[3] = request.form.get("playerThree")
+#     players[4] = request.form.get("playerFour")
+#     players[5] = request.form.get("playerFive")
+#     players[0] = request.form.get("playerSix")
 
 
-    for i, player in enumerate(players):
-        newArr = []
-        newArr.append(players[(i + 1) % 6])
-        newArr.append(players[(i + 6) % 6]) 
-        newArr.append(players[(i + 5) % 6])
-        newArr.append(players[(i + 2) % 6])
-        newArr.append(players[(i + 3) % 6])
-        newArr.append(players[(i + 4) % 6])
-        teamsheets.append(newArr)
+#     for i, player in enumerate(players):
+#         newArr = []
+#         newArr.append(players[(i + 1) % 6])
+#         newArr.append(players[(i + 6) % 6]) 
+#         newArr.append(players[(i + 5) % 6])
+#         newArr.append(players[(i + 2) % 6])
+#         newArr.append(players[(i + 3) % 6])
+#         newArr.append(players[(i + 4) % 6])
+#         teamsheets.append(newArr)
 
 
-    return render_template("rotations.html", teamsheets=teamsheets)
+#     return render_template("rotations.html", teamsheets=teamsheets)
 
 if __name__ == "__main__":
   app.run(extra_files=extra_files)
