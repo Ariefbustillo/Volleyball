@@ -8,15 +8,19 @@
         <div class="main">
             <form id="login" action="login" method="post">
                 <h2>Please Enter Username and Password</h2>
-                <label id="username">Username:</label>
-                <input required id="username" type="text" name="username" placeholder="Username">
-                <label id="password">Password</label>
-                <input required id="password" type="password" placeholder="Password" name="password">
-                <input type="submit" name="submit" value="Enter" class="submit-btn" id="enter">
+                <div class="username">
+                    <label id="username">Username:</label>
+                    <input required id="username" type="text" name="username" placeholder="Username"></br>
+                </div>
+                <div class="password">
+                    <label id="password">Password</label>
+                    <input required id="password" type="password" placeholder="Password" name="password"></br>
+                </div>
+                <input type="submit" name="submit" value="Enter" class="submit-btn" >
             </form>
         </br> OR </br> </br>
             <a class="signup" href="/signup">
-                <button id="sign-up" class="submit-btn">Sign up</button>
+                <button  class="submit-btn">Sign up</button>
         </div>
     </body>
 </html>

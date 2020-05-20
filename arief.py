@@ -1,5 +1,12 @@
 import sqlite3
 from sqlite3 import Error
+
+class Players:
+    def __init__(self, player_id, team, name, position):
+        self.player_id = player_id
+        self.team = team
+        self.name = name
+        self.position = position
 def create_connection():
     db = None
     try:
@@ -50,11 +57,12 @@ def get_players(connection,team_name):
         player_dict.update({player[0]:player[1]})
     return player_dict
 
-def get_player_info(connection,team_name):
+def get_player_info(connection,player_id):
     cursor = connection.cursor()
-    cursor.execute("SELECT * FROM players WHERE team_name = ?", (team_name,))
-    players = cursor.fetchall()
-    return players
+    cursor.execute("SELECT * FROM players WHERE player_id = ?", (player_id,))
+    players = cursor.fetchone()
+    player_info = Players(player_id, players[1], players[2], players[3])
+    return player_info
 
 def insert_team(connection, user_id, team_name):
     cursor = connection.cursor()

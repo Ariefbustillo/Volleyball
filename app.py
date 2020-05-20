@@ -49,17 +49,14 @@ def index():
         session['user_id'] = None
         session['teams'] = []
     if not session['logged_in']: 
-        print(session['logged_in'])
         return render_template("login.html")
     db = create_connection()
     session['teams'] = get_teams(db, session['user_id'])
-    print(session['username'])
     return render_template("index.html", teams=session['teams'])
 
 
 @app.route("/logout")
 def logout():
-    print("print out 4")
     session['logged_in'] = False
     return render_template("logged_out.html")
 
@@ -69,12 +66,11 @@ def signup():
 
 @app.route("/team_rotations", methods=["post"])
 def team_rotations():
-    print("print out0")
     team = request.form.get("team_name")
     db = create_connection()
-    print("print out1")
     players = get_players(db, team)
-    
+    print('PLAYERS', players)
+
     return render_template("team_rotations.html", players=players, team=team)
 
 @app.route("/create_team")
@@ -99,7 +95,6 @@ def create_player():
 
 @app.route("/new_player", methods=["post"])
 def new_player():
-    print("print out 3")
     name = request.form.get("name")
     position = request.form.get("position")
     team = request.form.get("team_name")
@@ -117,18 +112,13 @@ def player_info():
     team = request.form.get("team")
     player_id = request.form.get("player_id")
     db = create_connection()
-    players_info = get_player_info(db,team)
-    position = ''
+    player_info = get_player_info(db,player_id)
 
-    for player_info in players_info:
-        if player_info[0] == int(player_id):
-            position = player_info[3]
-
-    return render_template("player_info.html", name=name, team=team, position=position, player_id=player_id)
+    return render_template("player_info.html", name=name, team=team, position=player_info.position, player_id=player_id)
 
 @app.route("/remove_player", methods=["post"])
 def remove_player():
-    player_id = request.form.get("player_id")
+    player_id = int(request.form.get("player_id"))
     db = create_connection()
     with db:
         delete_player(db, player_id)
@@ -155,18 +145,15 @@ def login():
     db = create_connection()
     users = get_users(db)
 
-    print(search_usernames(users,user_name))
     if search_usernames(users,user_name) != False:        
         if users[(search_usernames(users,user_name) - 1)][2] == password:
             
             session['logged_in'] = True
             session['user_id'] = users[(search_usernames(users,user_name) - 1)][0]
             session['username'] = user_name
-            print("true")
             return redirect(url_for('index'))
         else: return render_template("failed_login.html")
     else:
-        print("loser")
         return render_template("failed_login.html")
 
 
