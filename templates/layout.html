@@ -1,25 +1,28 @@
 <!DOCTYPE html>
-<html lang="en" >
-    <head>
-        <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='style.css') }}">
-        <script src="{{ url_for('static', filename='app.js') }}"></script>
-    </head>
-    <title>Volleyball rotations</title>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='style.css') }}">
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+</head>
+<title>Volleyball rotations</title>
+
 <body>
-     
-        <button class="home">
-            <a class="home" href="/"><img id="homebutton" src="/static/images/home-button.png"></a>
-            
-        </button>
-        <div class="box"></div>
-        <div class="logout">
-            <form action="/logout">
-                <button id="logout-button" class="submit-btn">Log Out</button>
-            </form>
-        </div>
-        
-    
+
+    <button class="home">
+        <a class="home" href="/"><img id="homebutton" src="/static/images/home-button.png"></a>
+
+    </button>
+    <div class="box"></div>
+    <div class="logout">
+        <form action="/logout">
+            <button id="logout-button" class="submit-btn">Log Out</button>
+        </form>
+    </div>
+
+
 </body>
-    
-    {% block content %}{% endblock %}
+
+{% block content %}{% endblock %}
+
 </html>

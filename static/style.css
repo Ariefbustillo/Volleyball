@@ -153,11 +153,6 @@ h1{
     box-sizing: border-box;
     box-shadow: 2px 2px 4px rgba(156, 122, 122, 0.25);
     
-
-
-    
-    /* border: 1px #094120; */
-    
 }
 .submit-btn:hover {
     box-shadow: 2px 2px 4px grey;
