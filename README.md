@@ -11,5 +11,5 @@ You will need the following env vars set to run the app correctly:
 - DB_URL
 - SECRET_KEY
 
-# Gotchas
+## Gotchas
 Currently the User table is not automated, so you will need to manually create that to run the app properly
