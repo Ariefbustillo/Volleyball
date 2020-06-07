@@ -5,7 +5,7 @@ A Volleyball management app that allows user to create teams and players and see
 ## Running the app
 python3 app.py
 
-## Enviornment Variables
+## Environment Variables
 You will need the following env vars set to run the app correctly:
 - DB_URL
 - SECRET_KEY
