@@ -6,7 +6,7 @@ by the use of a state of the art spinning ball!!!
 ## Running the app
 python3 app.py
 
-## ENV VARS
+## Enviornment Variables
 You will need the following env vars set to run the app correctly:
 - DB_URL
 - SECRET_KEY
