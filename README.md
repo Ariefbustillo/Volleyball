@@ -1,6 +1,5 @@
 # Volleyball
-A state of the art Volleyball app, that allows user to create teams, players, and see the rotations for their respective teams to enchance their prepartion for each game. Additionally players can create accounts. Lastly the user experience is enhanced
-by the use of a state of the art spinning ball!!!
+A Volleyball management app that allows user to create teams and players and see the rotations for their respective teams. Users can create accounts so that team information is individual and private.
 
 
 ## Running the app
@@ -12,4 +11,4 @@ You will need the following env vars set to run the app correctly:
 - SECRET_KEY
 
 ## Gotchas
-Currently the User table is not automated, so you will need to manually create that to run the app properly
+Currently table creation is not automated, so you will need to manually create them to run the app properly
