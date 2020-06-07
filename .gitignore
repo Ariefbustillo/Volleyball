@@ -1,5 +1,10 @@
 # Python related files and directories
 __pycache__
+config_debug.py
 
 # executables
 *.exe
+
+# SQLlite db
+*.db
+

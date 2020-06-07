@@ -5,7 +5,7 @@ from functools import wraps
 import sqlite3
 from sqlite3 import Error
 
-from utils import *
+from mod import *
 
 extra_dirs = [
     "./static",
@@ -189,4 +189,9 @@ def login():
 
 
 if __name__ == "__main__":
+    if os.path.isfile("config_debug.py"):
+        from config_debug import set_env_vars
+
+        set_env_vars()
+
     app.run(extra_files=extra_files)
