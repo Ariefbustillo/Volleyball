@@ -5,7 +5,7 @@ from functools import wraps
 import sqlite3
 from sqlite3 import Error
 
-from arief import *
+from utils import *
 
 extra_dirs = [
     "./static",
@@ -146,6 +146,11 @@ def remove_player():
 # Creates new account
 @app.route("/create_account", methods=["post"])
 def create_account():
+    """Creates a user account
+
+    Returns:
+        render_template: login template with a newly created user account
+    """
     db = create_connection()
     username = request.form.get("username")
     password = request.form.get("password")
@@ -158,6 +163,11 @@ def create_account():
 # Login authentification
 @app.route("/login", methods=["POST", "GET"])
 def login():
+    """Route to login users
+
+    Returns:
+        render template: Can either be succesful or failed
+    """
     # session["username"] = request.form.get("username")
     user_name = request.form.get("username")
     password = request.form.get("password")
